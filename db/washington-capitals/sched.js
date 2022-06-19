@@ -82,3 +82,4 @@ const WASsched = [
   220429,
   220429
 ]
+export function WASsched();

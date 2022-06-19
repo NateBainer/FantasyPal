@@ -82,3 +82,4 @@ const CBJsched = [
   220428,
   220429
 ]
+export function CBJsched();

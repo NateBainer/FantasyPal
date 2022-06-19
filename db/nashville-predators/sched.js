@@ -82,3 +82,4 @@ const NASsched = [
   220428,
   220429
 ]
+export function NASsched();

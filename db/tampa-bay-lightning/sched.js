@@ -82,3 +82,4 @@ const TBLsched = [
   220428,
   220429
 ]
+export function TBLsched();

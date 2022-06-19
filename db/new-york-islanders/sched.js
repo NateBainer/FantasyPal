@@ -82,3 +82,4 @@ const NYIsched = [
   220428,
   220429
 ]
+export function NYIsched();

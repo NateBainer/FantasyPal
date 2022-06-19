@@ -82,3 +82,4 @@ const EDMsched = [
   220428,
   220429
 ]
+export function DETsched();

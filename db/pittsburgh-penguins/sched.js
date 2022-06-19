@@ -82,3 +82,4 @@ const PITsched = [
   220426,
   220429
 ]
+export function PITsched();

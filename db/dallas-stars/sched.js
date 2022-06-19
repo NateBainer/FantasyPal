@@ -82,3 +82,4 @@ const DALsched = [
   220427,
   220429
 ]
+export function DALsched();

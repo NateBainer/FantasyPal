@@ -82,3 +82,4 @@ const VGKsched = [
   220427,
   220429
 ]
+export function VGKsched();

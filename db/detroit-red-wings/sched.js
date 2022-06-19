@@ -82,3 +82,4 @@ const DETsched = [
   220426,
   220429
 ]
+export function DETsched();

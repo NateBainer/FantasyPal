@@ -82,3 +82,4 @@ const OTTsched = [
   220428,
   220429
 ]
+export function OTTsched();
