@@ -2,7 +2,7 @@
 
 // schedule 2021-2022:
 
-const sched = [
+const ANAsched = [
   211014,
   211015,
   211018,

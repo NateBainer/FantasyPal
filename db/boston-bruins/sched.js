@@ -1,4 +1,4 @@
-const sched = [
+const BOSsched = [
   211016,
   211020,
   211022,

@@ -1,4 +1,4 @@
-const sched = [
+const ARIsched = [
   211012,
   211016,
   211018,
