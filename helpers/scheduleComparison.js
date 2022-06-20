@@ -1,22 +1,36 @@
-import {ANAsched} from '../db/anaheim-ducks/sched.js'
+import {ANAsched} from '../db/anaheim-ducks/ANAsched'
+import {ARIsched} from '../db/arizona-coyotes/ARIsched'
+import {BOSsched} from '../db/boston-bruins/BOSsched'
+import {BUFsched} from '../db/buffalo-sabres/BUFsched'
+import {CALsched} from '../db/calgary-flames/CALsched'
+import {CARsched} from '../db/carolina-hurricanes/CARsched'
+import {CHIsched} from '../db/chicago-blackhawks/CHIsched'
+import {COLsched} from '../db/colorado-avalanche/COLsched'
+import {CBJsched} from '../db/columbus-blue-jackets/CBJsched'
+import {DALsched} from '../db/dallas-stars/DALsched'
+import {DETsched} from '../db/detroit-red-wings/DETsched'
+import {EDMsched} from '../db/edmonton-oilers/EDMsched'
+import {FLOsched} from '../db/florida-panthers/FLOsched'
+import {LAKsched} from '../db/los-angeles-kings/LAKsched'
+import {MINsched} from '../db/minnesota-wild/MINsched'
+import {MTLsched} from '../db/montreal-canadiens/MTLsched'
+import {NASsched} from '../db/nashville-predators/NASsched'
+import {NJDsched} from '../db/new-jersey-devils/NJDsched'
+import {NYIsched} from '../db/new-york-islanders/NYIsched'
+import {NYRsched} from '../db/new-york-rangers/NYRsched'
+import {OTTsched} from '../db/ottawa-senators/OTTsched'
+import {PHIsched} from '../db/philadelphia-flyers/PHIsched'
+import {PITsched} from '../db/pittsburgh-penguins/PITsched'
+import {SJSsched} from '../db/san-jose-sharks/SJSsched'
+import {SEAsched} from '../db/seattle-kraken/SEAsched'
+import {STLsched} from '../db/st-louis-blues/STLsched'
+import {TBLsched} from '../db/tampa-bay-lightning/TBLsched'
+import {TMLsched} from '../db/toronto-maple-leafs/TMLsched'
+import {VANsched} from '../db/vancouver-canucks/VANsched'
+import {VGKsched} from '../db/vegas-golden-knights/VGKsched'
+import {WASsched} from '../db/washington-capitals/WASsched'
+import {WINsched} from '../db/winnipeg-jets/WINsched'
 
 
-// function scheduleComparison(arr1, arr2){
-//   if (arr1.length !== arr2.length) return false;
-//   for (var i = 0, len = arr1.length; i < len; i++){
-//       if (arr1[i] !== arr2[i]){
-//           return false;
-//       }
-//   }
-//   return true; 
-// }
 
-// const scheduleComparison = (date, a, b) => {
-//   var i = 0, len = myArray.length;
-//     while (i < len) {
-//         // your code
-//         i++
-//     }
-// }
-
-console.log(ANAsched)
+console.log(ANAsched);
