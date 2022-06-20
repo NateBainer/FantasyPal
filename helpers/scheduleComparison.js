@@ -50,7 +50,7 @@ const scheduleComparison = (arr1, arr2, date) => {
     }
   }
    
-  return sameDays.length;  // Return the length arr elements
+  return sameDays.length;  // Return the number of elements in sameDays 
 }  
 
-console.log(scheduleComparison(ANAsched, BOSsched, 10))
+console.log(scheduleComparison(BOSsched, TMLsched, 220401))
