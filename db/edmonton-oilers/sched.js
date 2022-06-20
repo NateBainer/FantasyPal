@@ -1,4 +1,4 @@
-const EDMsched = [
+export const EDMsched = [
   211013,
   211016,
   211019,

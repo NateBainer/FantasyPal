@@ -1,4 +1,4 @@
-const PITsched = [
+export const PITsched = [
   211012,
   211014,
   211016,

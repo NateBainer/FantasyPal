@@ -1,4 +1,4 @@
-const NJDsched = [
+export const NJDsched = [
   211015,
   211019,
   211021,

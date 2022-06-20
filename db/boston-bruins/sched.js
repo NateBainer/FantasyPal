@@ -1,4 +1,4 @@
-const BOSsched = [
+export const BOSsched = [
   211016,
   211020,
   211022,

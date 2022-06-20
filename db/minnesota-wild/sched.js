@@ -1,4 +1,4 @@
-const MINsched = [
+export const MINsched = [
   211015,
   211016,
   211019,

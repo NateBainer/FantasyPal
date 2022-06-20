@@ -1,4 +1,4 @@
-const PHIsched = [
+export const PHIsched = [
   211015,
   211018,
   211020,

@@ -1,4 +1,4 @@
-const COLsched = [
+export const COLsched = [
   211013,
   211016,
   211019,

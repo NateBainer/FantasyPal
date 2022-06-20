@@ -1,4 +1,4 @@
-const SJSsched= [
+export const SJSsched= [
   211016,
   211019,
   211021,

@@ -1,4 +1,4 @@
-const WINsched = [
+export const WINsched = [
   211013,
   211016,
   211019,

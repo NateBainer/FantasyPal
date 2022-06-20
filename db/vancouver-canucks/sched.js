@@ -1,4 +1,4 @@
-const VANsched = [
+export const VANsched = [
   211013,
   211015,
   211016,

@@ -1,4 +1,4 @@
-const DALsched = [
+export const DALsched = [
   211014,
   211016,
   211017,

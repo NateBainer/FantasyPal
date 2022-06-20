@@ -1,4 +1,4 @@
-const TBLsched = [
+export const TBLsched = [
   211012,
   211014,
   211016,

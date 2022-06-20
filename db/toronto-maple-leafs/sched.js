@@ -1,4 +1,4 @@
-const TMLsched = [
+export const TMLsched = [
   211013,
   211014,
   211016,

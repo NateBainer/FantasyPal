@@ -1,4 +1,4 @@
-const SEAsched = [
+export const SEAsched = [
   211012,
   211014,
   211016,

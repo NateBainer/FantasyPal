@@ -1,4 +1,4 @@
-const WASsched = [
+export const WASsched = [
   211013,
   211016,
   211019,

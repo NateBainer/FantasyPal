@@ -1,4 +1,4 @@
-const CHIsched = [
+export const CHIsched = [
   211013,
   211015,
   211016,

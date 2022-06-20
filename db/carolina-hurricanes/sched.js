@@ -1,4 +1,4 @@
-const CARsched = [
+export const CARsched = [
   210114,
   211016,
   211021,

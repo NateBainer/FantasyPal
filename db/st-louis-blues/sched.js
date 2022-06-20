@@ -1,4 +1,4 @@
-const STLsched = [
+export const STLsched = [
   211016,
   211018,
   211030,

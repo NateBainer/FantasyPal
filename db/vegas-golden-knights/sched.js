@@ -1,4 +1,4 @@
-const VGKsched = [
+export const VGKsched = [
   211012,
   211014,
   211020,

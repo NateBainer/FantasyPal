@@ -1,4 +1,4 @@
-const NYIsched = [
+export const NYIsched = [
   211014,
   211016,
   211019,

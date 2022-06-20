@@ -1,4 +1,4 @@
-const OTTsched = [
+export const OTTsched = [
   211014,
   211016,
   211017,

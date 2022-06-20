@@ -1,4 +1,4 @@
-const DETsched = [
+export const DETsched = [
   211014,
   211016,
   211019,
