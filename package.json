@@ -1,0 +1,19 @@
+{
+  "name": "fantasypal",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NateBainer/FantasyPal.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NateBainer/FantasyPal/issues"
+  },
+  "homepage": "https://github.com/NateBainer/FantasyPal#readme"
+}
