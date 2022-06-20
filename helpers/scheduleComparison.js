@@ -53,4 +53,5 @@ const scheduleComparison = (arr1, arr2, date) => {
   return sameDays.length;  // Return the number of elements in sameDays 
 }  
 
-console.log(scheduleComparison(BOSsched, TMLsched, 220401))
+module.exports = scheduleComparison
+
