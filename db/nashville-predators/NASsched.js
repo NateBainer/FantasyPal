@@ -1,4 +1,4 @@
-export const NASsched = [
+const NASsched = [
   211014,
   211016,
   211019,
@@ -82,4 +82,4 @@ export const NASsched = [
   220428,
   220429
 ]
-export function NASsched();
+module.exports = NASsched

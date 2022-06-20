@@ -1,4 +1,4 @@
-export const STLsched = [
+const STLsched = [
   211016,
   211018,
   211030,
@@ -82,4 +82,4 @@ export const STLsched = [
   220426,
   220429
 ]
-export function STLsched();
+module.exports = STLsched

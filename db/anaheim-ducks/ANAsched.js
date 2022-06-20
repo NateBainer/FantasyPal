@@ -2,7 +2,7 @@
 
 // schedule 2021-2022:
 
-export const ANAsched = [
+const ANAsched = [
   211014,
   211015,
   211018,
@@ -87,4 +87,4 @@ export const ANAsched = [
   220429
 ]
 
-export function ANAsched();
+module.exports = ANAsched

@@ -1,4 +1,4 @@
-export const WASsched = [
+const WASsched = [
   211013,
   211016,
   211019,
@@ -82,4 +82,4 @@ export const WASsched = [
   220429,
   220429
 ]
-export function WASsched();
+module.exports = WASsched

@@ -1,4 +1,4 @@
-export const DALsched = [
+const DALsched = [
   211014,
   211016,
   211017,
@@ -82,4 +82,4 @@ export const DALsched = [
   220427,
   220429
 ]
-export function DALsched();
+module.exports = DALsched

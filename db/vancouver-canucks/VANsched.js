@@ -1,4 +1,4 @@
-export const VANsched = [
+const VANsched = [
   211013,
   211015,
   211016,
@@ -82,4 +82,4 @@ export const VANsched = [
   220428,
   220429
 ]
-export function VANsched();
+module.exports = VANsched

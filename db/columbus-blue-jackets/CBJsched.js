@@ -1,4 +1,4 @@
-export const CBJsched = [
+const CBJsched = [
   211014,
   211016,
   211019,
@@ -82,4 +82,4 @@ export const CBJsched = [
   220428,
   220429
 ]
-export function CBJsched();
+module.exports = CBJsched

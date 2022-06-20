@@ -1,4 +1,4 @@
-export const CHIsched = [
+const CHIsched = [
   211013,
   211015,
   211016,
@@ -82,4 +82,4 @@ export const CHIsched = [
   220427,
   220429
 ]
-export function CHIsched();
+module.exports = CHIsched

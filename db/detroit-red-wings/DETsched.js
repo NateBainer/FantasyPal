@@ -1,4 +1,4 @@
-export const DETsched = [
+const DETsched = [
   211014,
   211016,
   211019,
@@ -82,4 +82,4 @@ export const DETsched = [
   220426,
   220429
 ]
-export function DETsched();
+module.exports = DETsched

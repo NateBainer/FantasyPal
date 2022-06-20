@@ -1,4 +1,4 @@
-export const SJSsched= [
+const SJSsched= [
   211016,
   211019,
   211021,
@@ -82,4 +82,4 @@ export const SJSsched= [
   220428,
   220429
 ]
-export function SJSsched();
+module.exports = SJSsched

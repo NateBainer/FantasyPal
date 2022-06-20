@@ -1,4 +1,4 @@
-export const ARIsched = [
+const ARIsched = [
   211012,
   211016,
   211018,
@@ -83,4 +83,4 @@ export const ARIsched = [
   220429
 ]
 
-export function ARIsched();
+module.exports = ARIsched

@@ -1,36 +1,56 @@
-import {ANAsched} from '../db/anaheim-ducks/ANAsched'
-import {ARIsched} from '../db/arizona-coyotes/ARIsched'
-import {BOSsched} from '../db/boston-bruins/BOSsched'
-import {BUFsched} from '../db/buffalo-sabres/BUFsched'
-import {CALsched} from '../db/calgary-flames/CALsched'
-import {CARsched} from '../db/carolina-hurricanes/CARsched'
-import {CHIsched} from '../db/chicago-blackhawks/CHIsched'
-import {COLsched} from '../db/colorado-avalanche/COLsched'
-import {CBJsched} from '../db/columbus-blue-jackets/CBJsched'
-import {DALsched} from '../db/dallas-stars/DALsched'
-import {DETsched} from '../db/detroit-red-wings/DETsched'
-import {EDMsched} from '../db/edmonton-oilers/EDMsched'
-import {FLOsched} from '../db/florida-panthers/FLOsched'
-import {LAKsched} from '../db/los-angeles-kings/LAKsched'
-import {MINsched} from '../db/minnesota-wild/MINsched'
-import {MTLsched} from '../db/montreal-canadiens/MTLsched'
-import {NASsched} from '../db/nashville-predators/NASsched'
-import {NJDsched} from '../db/new-jersey-devils/NJDsched'
-import {NYIsched} from '../db/new-york-islanders/NYIsched'
-import {NYRsched} from '../db/new-york-rangers/NYRsched'
-import {OTTsched} from '../db/ottawa-senators/OTTsched'
-import {PHIsched} from '../db/philadelphia-flyers/PHIsched'
-import {PITsched} from '../db/pittsburgh-penguins/PITsched'
-import {SJSsched} from '../db/san-jose-sharks/SJSsched'
-import {SEAsched} from '../db/seattle-kraken/SEAsched'
-import {STLsched} from '../db/st-louis-blues/STLsched'
-import {TBLsched} from '../db/tampa-bay-lightning/TBLsched'
-import {TMLsched} from '../db/toronto-maple-leafs/TMLsched'
-import {VANsched} from '../db/vancouver-canucks/VANsched'
-import {VGKsched} from '../db/vegas-golden-knights/VGKsched'
-import {WASsched} from '../db/washington-capitals/WASsched'
-import {WINsched} from '../db/winnipeg-jets/WINsched'
+
+
+const ANAsched = require('../db/anaheim-ducks/ANAsched')
+const ARIsched = require('../db/arizona-coyotes/ARIsched')
+const BOSsched = require('../db/boston-bruins/BOSsched')
+const BUFsched = require('../db/buffalo-sabres/BUFsched')
+const CALsched = require('../db/calgary-flames/CALsched')
+const CARsched = require('../db/carolina-hurricanes/CARsched')
+const CHIsched = require('../db/chicago-blackhawks/CHIsched')
+const COLsched = require('../db/colorado-avalanche/COLsched')
+const CBJsched = require('../db/columbus-blue-jackets/CBJsched')
+const DALsched = require('../db/dallas-stars/DALsched')
+const DETsched = require('../db/detroit-red-wings/DETsched')
+const EDMsched = require('../db/edmonton-oilers/EDMsched')
+const FLOsched = require('../db/florida-panthers/FLOsched')
+const LAKsched = require('../db/los-angeles-kings/LAKsched')
+const MINsched = require('../db/minnesota-wild/MINsched')
+const MTLsched = require('../db/montreal-canadiens/MTLsched')
+const NASsched = require('../db/nashville-predators/NASsched')
+const NJDsched = require('../db/new-jersey-devils/NJDsched')
+const NYIsched = require('../db/new-york-islanders/NYIsched')
+const NYRsched = require('../db/new-york-rangers/NYRsched')
+const OTTsched = require('../db/ottawa-senators/OTTsched')
+const PHIsched = require('../db/philadelphia-flyers/PHIsched')
+const PITsched = require('../db/pittsburgh-penguins/PITsched')
+const SJSsched = require('../db/san-jose-sharks/SJSsched')
+const SEAsched = require('../db/seattle-kraken/SEAsched')
+const STLsched = require('../db/st-louis-blues/STLsched')
+const TBLsched = require('../db/tampa-bay-lightning/TBLsched')
+const TMLsched = require('../db/toronto-maple-leafs/TMLsched')
+const VANsched = require('../db/vancouver-canucks/VANsched')
+const VGKsched = require('../db/vegas-golden-knights/VGKsched')
+const WASsched = require('../db/washington-capitals/WASsched')
+const WINsched = require('../db/winnipeg-jets/WINsched')
 
 
 
-console.log(ANAsched);
+
+const scheduleComparison = (arr1, arr2, date) => {
+  const sameDays = [];  // Array to contain match elements
+  for(var i=0 ; i<arr1.length ; ++i) {
+    for(var j=0 ; j<arr2.length ; ++j) {
+      if (date >= arr1[i]) { // only access numbers greater than current date (later days)
+        
+      } else {
+      if(arr1[i] == arr2[j]) {    // If element is in both the arrays
+        sameDays.push(arr1[i]);        // Push to arr array
+        }
+      }
+    }
+  }
+   
+  return sameDays.length;  // Return the length arr elements
+}  
+
+console.log(scheduleComparison(ANAsched, BOSsched, 10))

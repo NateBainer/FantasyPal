@@ -1,4 +1,4 @@
-export const EDMsched = [
+const EDMsched = [
   211013,
   211016,
   211019,
@@ -82,4 +82,4 @@ export const EDMsched = [
   220428,
   220429
 ]
-export function DETsched();
+module.exports = EDMsched

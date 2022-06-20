@@ -1,4 +1,4 @@
-export const FLOsched = [
+const FLOsched = [
   211014,
   211016,
   211019,
@@ -82,4 +82,4 @@ export const FLOsched = [
   220428,
   220429
 ]
-export function FLOsched();
+module.exports = FLOsched

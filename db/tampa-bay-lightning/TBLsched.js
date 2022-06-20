@@ -1,4 +1,4 @@
-export const TBLsched = [
+const TBLsched = [
   211012,
   211014,
   211016,
@@ -82,4 +82,4 @@ export const TBLsched = [
   220428,
   220429
 ]
-export function TBLsched();
+module.exports = TBLsched

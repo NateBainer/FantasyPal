@@ -1,4 +1,4 @@
-export const BOSsched = [
+const BOSsched = [
   211016,
   211020,
   211022,
@@ -83,4 +83,4 @@ export const BOSsched = [
   220429
 ]
 
-export function BOSsched();
+module.exports = BOSsched

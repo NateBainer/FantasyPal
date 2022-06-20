@@ -1,4 +1,4 @@
-export const COLsched = [
+const COLsched = [
   211013,
   211016,
   211019,
@@ -82,4 +82,4 @@ export const COLsched = [
   220428,
   220429
 ]
-export function COLsched();
+module.exports = COLsched

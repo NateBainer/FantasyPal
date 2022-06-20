@@ -1,4 +1,4 @@
-export const MTLsched = [
+const MTLsched = [
   211013,
   211014,
   211016,
@@ -82,4 +82,4 @@ export const MTLsched = [
   220427,
   220429
 ]
-export function MTLsched();
+module.exports = MTLsched

@@ -1,4 +1,4 @@
-export const PITsched = [
+const PITsched = [
   211012,
   211014,
   211016,
@@ -82,4 +82,4 @@ export const PITsched = [
   220426,
   220429
 ]
-export function PITsched();
+module.exports = PITsched

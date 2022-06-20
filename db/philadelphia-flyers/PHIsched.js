@@ -1,4 +1,4 @@
-export const PHIsched = [
+const PHIsched = [
   211015,
   211018,
   211020,
@@ -82,4 +82,4 @@ export const PHIsched = [
   220417,
   220419
 ]
-export function PHIsched();
+module.exports = PHIsched

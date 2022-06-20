@@ -1,4 +1,4 @@
-export const LAKsched = [
+const LAKsched = [
   211014,
   211016,
   211019,
@@ -82,4 +82,4 @@ export const LAKsched = [
   220427,
   220428
 ]
-export function  LAKsched();
+module.exports = LAKsched

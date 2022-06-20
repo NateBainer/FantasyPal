@@ -1,4 +1,4 @@
-export const NJDsched = [
+const NJDsched = [
   211015,
   211019,
   211021,
@@ -82,4 +82,4 @@ export const NJDsched = [
   220428,
   220429
 ]
-export function NJDsched();
+module.exports = NJDsched

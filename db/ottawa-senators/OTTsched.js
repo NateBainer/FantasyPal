@@ -1,4 +1,4 @@
-export const OTTsched = [
+const OTTsched = [
   211014,
   211016,
   211017,
@@ -82,4 +82,4 @@ export const OTTsched = [
   220428,
   220429
 ]
-export function OTTsched();
+module.exports = OTTsched

@@ -1,4 +1,4 @@
-export const VGKsched = [
+const VGKsched = [
   211012,
   211014,
   211020,
@@ -82,4 +82,4 @@ export const VGKsched = [
   220427,
   220429
 ]
-export function VGKsched();
+module.exports = VGKsched

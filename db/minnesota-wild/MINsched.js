@@ -1,4 +1,4 @@
-export const MINsched = [
+const MINsched = [
   211015,
   211016,
   211019,
@@ -82,4 +82,4 @@ export const MINsched = [
   220428,
   220429
 ]
-export function MINsched();
+module.exports = MINsched

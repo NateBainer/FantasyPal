@@ -1,4 +1,4 @@
-export const CARsched = [
+const CARsched = [
   210114,
   211016,
   211021,
@@ -83,4 +83,4 @@ export const CARsched = [
   220428
 ]
 
-export function  CARsched();
+module.exports = CARsched

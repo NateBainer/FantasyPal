@@ -1,4 +1,4 @@
-export const BUFsched = [
+const BUFsched = [
   211014,
   211016,
   211019,
@@ -83,4 +83,4 @@ export const BUFsched = [
   220429
 ]
 
-export function  BUFsched();
+module.exports = BUFsched

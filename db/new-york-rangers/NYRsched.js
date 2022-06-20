@@ -1,4 +1,4 @@
-export const NYRsched = [
+const NYRsched = [
   211013,
   211014,
   211016,
@@ -82,4 +82,4 @@ export const NYRsched = [
   220427,
   220429
 ]
-export function  NYRsched();
+module.exports = NYRsched

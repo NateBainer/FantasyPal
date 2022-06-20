@@ -1,4 +1,4 @@
-export const SEAsched = [
+const SEAsched = [
   211012,
   211014,
   211016,
@@ -82,4 +82,4 @@ export const SEAsched = [
   220429,
   220501
 ]
-export function SEAsched();
+module.exports = SEAsched

@@ -1,4 +1,4 @@
-export const CALsched = [
+const CALsched = [
   211016,
   211018,
   211021,
@@ -83,4 +83,4 @@ export const CALsched = [
   220429
 ]
 
-export function CALsched();
+module.exports = CALsched

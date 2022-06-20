@@ -1,4 +1,4 @@
-export const WINsched = [
+const WINsched = [
   211013,
   211016,
   211019,
@@ -82,4 +82,4 @@ export const WINsched = [
   220429,
   220501
 ]
-export function WINsched();
+module.exports = WINsched

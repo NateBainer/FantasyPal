@@ -1,4 +1,4 @@
-export const TMLsched = [
+const TMLsched = [
   211013,
   211014,
   211016,
@@ -82,4 +82,4 @@ export const TMLsched = [
   220426,
   220429
 ]
-export function TMLsched();
+module.exports = TMLsched
