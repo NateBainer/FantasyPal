@@ -1,15 +1,14 @@
 /* eslint-disable camelcase */
 const express = require("express");
 const app = express();
-const PORT = 8090; // default port 8080
+const PORT = 8090; // default port 8090
 const bodyParser = require("body-parser");
 const bcryptjs = require('bcryptjs');
 const cookieSession = require('cookie-session');
 
 // -----------------FOR SOME REASON, COULD NOT LINK HELPERS.JS AND DATABASE.JS WITHOUT ERROR----------------- //
 const schedDatabase = {
-  "b2xVn2": "http://www.lighthouselabs.ca",
-  "9sm5xK": "http://www.google.com"
+ 
 };
 
 const users = {
@@ -29,15 +28,14 @@ const getUserByEmail = (email, database) => {
   return Object.values(database).find(user => user.email === email);
 };
 
-const addSched = (longSched, userID, db) => {
-  const dateCreation = new Date();
-  const visitCount = 0;
-  const visitHistory = [];
-  const uVisitCount = 0;
-  const visitorIDList = [];
-  const shortSched = generateRandomString();
-  db[shortSched] = { userID, longSched, dateCreation, visitCount, visitHistory, visitorIDList, uVisitCount };
-  return shortSched;
+const addSched = (teamOne, teamTwo, numOfGames, user_id) => {
+  if (user_id in schedDatabase) {
+    schedDatabase[user_id].push({ teamOne, teamTwo, numOfGames, userID: user_id });
+
+  } else {
+    schedDatabase[user_id] = [{ teamOne, teamTwo, numOfGames, userID: user_id}];
+  }
+  // return schedDatabase[shortSched];
 };
 
 const generateRandomString = () => {
@@ -112,6 +110,12 @@ const WASsched = require('./db/washington-capitals/WASsched')
 const WINsched = require('./db/winnipeg-jets/WINsched')
 
 
+//do this for all other teams
+const scheduleLookup = {
+  "Anaheim Ducks": require('./db/anaheim-ducks/ANAsched'),
+  "Arizona Coyotes": require('./db/arizona-coyotes/ARIsched')
+}
+
 
 
 const scheduleComparison = (arr1, arr2, date) => {
@@ -142,8 +146,10 @@ app.get("/", (req, res) => {
   }
 });
 
-// SchedS
+// Scheds
 app.get("/scheds", (req, res) => {
+  console.log("Matchup", schedDatabase[req.session.user_id])
+  console.log(schedDatabase)
   let templateVars = {
     user: users[req.session.user_id],
     scheds: schedsForUser(req.session.user_id, schedDatabase)
@@ -178,17 +184,18 @@ app.get("/scheds/new", (req, res) => {
   }
 });
 
-
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!
 app.post("/scheds/new", (req, res) => {
-  console.log(req.body);
-  const longSched = req.body.longSched;
-  const userID = req.session.user_id;
-  const newSched = addSched(longSched, userID, schedDatabase);
-  res.redirect(`/scheds/${newSched}`);
+  console.log(req.body, 'hello there');
+  const teamOneSched = scheduleLookup[req.body["team-one"]]
+  const teamTwoSched = scheduleLookup[req.body["team-two"]]
+  const numOfGames = scheduleComparison(teamOneSched, teamTwoSched, req.body.date)
+  addSched(req.body["team-one"], req.body["team-two"], numOfGames, req.session.user_id)
+  res.render("scheds_show", {teamOne: req.body["team-one"], teamTwo: req.body["team-two"], numOfGames, user: users[req.session.user_id]})
 });
 
 
-// SchedS/:SHORTSched
+// Scheds/:SHORTSched
 app.get("/scheds/:shortSched", (req, res) => {
   const shortSched = req.params.shortSched;
   const userID = req.session.user_id;
@@ -206,28 +213,7 @@ app.get("/scheds/:shortSched", (req, res) => {
   }
 });
 
-app.post("/scheds/:shortSched", (req, res) => {
-  const shortSched = req.params.shortSched;
-  const longSched = req.body.longSched;
-  const newDate = new Date();
-  if (req.session.user_id === schedDatabase[shortSched].userID) {
-    schedDatabase[shortSched].longSched = longSched;
-    schedDatabase[shortSched].visitCount = 0;
-    schedDatabase[shortSched].visitHistory = [];
-    schedDatabase[shortSched].uVisitCount = 0;
-    schedDatabase[shortSched].visitorIDList = [];
-    schedDatabase[shortSched].dateCreation = newDate;
-    res.redirect(`/scheds/${shortSched}`);
-  } else {
-    let templateVars = {
-      status: 401,
-      message: "Hey! You can't make changes to that TinySched!!!",
-      user: users[req.session.user_id]
-    };
-    res.status(401);
-    res.render("scheds_error", templateVars);
-  }
-});
+
 
 // SchedS/:SHORTSched/DELETE
 app.post("/scheds/:shortSched/delete", (req,res) => {
@@ -246,40 +232,7 @@ app.post("/scheds/:shortSched/delete", (req,res) => {
   }
 });
 
-// U/:SHORTSched
-app.get("/u/:shortSched", (req, res) => {
-  const shortSched = req.params.shortSched;
-  const longSched = schedDatabase[shortSched].longSched;
-  const dateVisit = new Date();
-  if (!schedDatabase[shortSched]) {
-    let templateVars = {
-      status: 404,
-      message: "Hey! This TinySched ain't been born yet!",
-      user: users[req.session.user_id]
-    };
-    res.status(404);
-    res.render("scheds_error", templateVars);
-  } else if (!req.session.user_id) {
-    req.session.user_id = generateRandomString();
-    schedDatabase[shortSched].visitHistory.push([dateVisit,req.session.user_id]);
-    schedDatabase[shortSched].visitCount++;
-    schedDatabase[shortSched].visitorIDList.push(req.session.user_id);
-    schedDatabase[shortSched].uVisitCount++;
-  } else {
-    const visitorId = schedDatabase[shortSched].visitorIDList;
-    schedDatabase[shortSched].visitHistory.push([dateVisit,req.session.user_id]);
-    schedDatabase[shortSched].visitCount++;
-    if (!visitorId.includes(req.session.user_id)) {
-      visitorId.push(req.session.user_id);
-      schedDatabase[shortSched].uVisitCount++;
-    }
-  }
-  if (longSched.startsWith("http://")) {
-    res.redirect(longSched);
-  } else {
-    res.redirect(`http://${longSched}`);
-  }
-});
+
 
 // LOGIN
 app.get("/login", (req, res) => {
