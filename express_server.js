@@ -1,14 +1,14 @@
 /* eslint-disable camelcase */
 const express = require("express");
 const app = express();
-const PORT = 8090; // default port 8090
+const PORT = 8080; // default port 8090
 const bodyParser = require("body-parser");
 const bcryptjs = require('bcryptjs');
 const cookieSession = require('cookie-session');
 
 // -----------------FOR SOME REASON, COULD NOT LINK HELPERS.JS AND DATABASE.JS WITHOUT ERROR----------------- //
 const schedDatabase = {
- 
+
 };
 
 const users = {
@@ -33,7 +33,7 @@ const addSched = (teamOne, teamTwo, numOfGames, dateSearched, user_id) => {
     schedDatabase[user_id].push({ teamOne, teamTwo, numOfGames, dateSearched, userID: user_id });
 
   } else {
-    schedDatabase[user_id] = [{ teamOne, teamTwo, numOfGames, dateSearched, userID: user_id}];
+    schedDatabase[user_id] = [{ teamOne, teamTwo, numOfGames, dateSearched, userID: user_id }];
   }
   // return schedDatabase[shortSched];
 };
@@ -42,7 +42,7 @@ const generateRandomString = () => {
   console.log('yo')
   return Math.random().toString(36).substring(6);
 };
-  
+
 
 const addUser = (email, password) => {
   const hashedPassword = bcryptjs.hashSync(password, 10);
@@ -66,7 +66,7 @@ const schedsForUser = (id) => {
 };
 
 
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
   cookieSession({
     name: 'session',
@@ -144,26 +144,26 @@ const scheduleLookup = {
   "Vegas Golden Knights": require('./db/vegas-golden-knights/VGKsched'),
   "Washington Capitals": require('./db/washington-capitals/WASsched'),
   "Winnipeg Jets": require('./db/winnipeg-jets/WINsched')
-  }
+}
 
 
 
 const scheduleComparison = (arr1, arr2, date) => {
   const sameDays = [];  // Array to contain match elements
-  for(var i=0 ; i<arr1.length ; ++i) {
-    for(var j=0 ; j<arr2.length ; ++j) {
+  for (var i = 0; i < arr1.length; ++i) {
+    for (var j = 0; j < arr2.length; ++j) {
       if (date >= arr1[i]) { // only access numbers greater than current date (later days)
-        
+
       } else {
-      if(arr1[i] == arr2[j]) {    // If element is in both the arrays
-        sameDays.push(arr1[i]);        // Push to arr array
+        if (arr1[i] == arr2[j]) {    // If element is in both the arrays
+          sameDays.push(arr1[i]);        // Push to arr array
         }
       }
     }
   }
-   
+
   return sameDays.length;  // Return the number of elements in sameDays 
-}  
+}
 
 // --------------------- ALL ROUTES --------------------------- //
 
@@ -220,9 +220,10 @@ app.post("/scheds/new", (req, res) => {
   const teamOneSched = scheduleLookup[req.body["team-one"]];
   const teamTwoSched = scheduleLookup[req.body["team-two"]];
   const numOfGames = scheduleComparison(teamOneSched, teamTwoSched, req.body.date);
-  const dateSearched = req.body["Date"];
+  const dateSearched = req.body["date"];
   addSched(req.body["team-one"], req.body["team-two"], numOfGames, dateSearched, req.session.user_id);
-  res.render("scheds_show", {teamOne: req.body["team-one"], teamTwo: req.body["team-two"], numOfGames, dateSearched, user: users[req.session.user_id]});
+  console.log("test", req.body);
+  res.render("scheds_show", { teamOne: req.body["team-one"], teamTwo: req.body["team-two"], numOfGames, dateSearched, user: users[req.session.user_id] });
 });
 
 
@@ -239,7 +240,7 @@ app.get("/scheds/:shortSched", (req, res) => {
     res.render("scheds_error", templateVars);
   } else {
     const longSched = schedDatabase[shortSched].longSched;
-    let templateVars = {user: userID, scheds: schedsForUser(userID), longSched, shortSched};
+    let templateVars = { user: userID, scheds: schedsForUser(userID), longSched, shortSched };
     res.render("scheds_show", templateVars);
   }
 });
@@ -265,7 +266,7 @@ app.get("/login", (req, res) => {
   }
 });
 
-app.post("/login", (req,res) => {
+app.post("/login", (req, res) => {
   const { email, password } = req.body;
   const user = getUserByEmail(email, users);
   if (!user) {
@@ -297,7 +298,7 @@ app.post("/logout", (req, res) => {
 });
 
 // REGISTER
-app.get("/register", (req,res) => {
+app.get("/register", (req, res) => {
   let templateVars = {
     user: users[req.session.user_id]
   };
@@ -310,7 +311,7 @@ app.get("/register", (req,res) => {
 
 app.post("/register", (req, res) => {
   const { email, password } = req.body;
-  let user = {email: 'undefined'};
+  let user = { email: 'undefined' };
   if (!email || !password) {
     let templateVars = {
       status: 400,
