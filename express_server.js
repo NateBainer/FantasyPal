@@ -113,8 +113,38 @@ const WINsched = require('./db/winnipeg-jets/WINsched')
 //do this for all other teams
 const scheduleLookup = {
   "Anaheim Ducks": require('./db/anaheim-ducks/ANAsched'),
-  "Arizona Coyotes": require('./db/arizona-coyotes/ARIsched')
-}
+  "Arizona Coyotes": require('./db/arizona-coyotes/ARIsched'),
+  "Boston Bruins": require('./db/boston-bruins/BOSsched'),
+  "Buffalo Sabres": require('./db/buffalo-sabres/BUFsched'),
+  "Calgary Flames": require('./db/calgary-flames/CALsched'),
+  "Carolina Hurricanes": require('./db/carolina-hurricanes/CARsched'),
+  "Chicago Blackhawks": require('./db/chicago-blackhawks/CHIsched'),
+  "Colorado Avalanche": require('./db/colorado-avalanche/COLsched'),
+  "Columbus Blue Jackets": require('./db/columbus-blue-jackets/CBJsched'),
+  "Dallas Stars": require('./db/dallas-stars/DALsched'),
+  "Detroit Red Wings": require('./db/detroit-red-wings/DETsched'),
+  "Edmonton Oilers": require('./db/edmonton-oilers/EDMsched'),
+  "Florida Panthers": require('./db/florida-panthers/FLOsched'),
+  "Los Angeles Kings": require('./db/los-angeles-kings/LAKsched'),
+  "Minnesota Wild": require('./db/minnesota-wild/MINsched'),
+  "Montreal Canadiens": require('./db/montreal-canadiens/MTLsched'),
+  "Nashville Predators": require('./db/nashville-predators/NASsched'),
+  "New Jersey Devils": require('./db/new-jersey-devils/NJDsched'),
+  "New York Islanders": require('./db/new-york-islanders/NYIsched'),
+  "New York Rangers": require('./db/new-york-rangers/NYRsched'),
+  "Ottawa Senators": require('./db/ottawa-senators/OTTsched'),
+  "Philadelphia Flyers": require('./db/philadelphia-flyers/PHIsched'),
+  "Pittsburgh Penguins": require('./db/pittsburgh-penguins/PITsched'),
+  "San Jose Sharks": require('./db/san-jose-sharks/SJSsched'),
+  "Seattle Kraken": require('./db/seattle-kraken/SEAsched'),
+  "St Louis Blues": require('./db/st-louis-blues/STLsched'),
+  "Tampa Bay Lightning": require('./db/tampa-bay-lightning/TBLsched'),
+  "Toronto Maple Leafs": require('./db/toronto-maple-leafs/TMLsched'),
+  "Vancouver Canucks": require('./db/vancouver-canucks/VANsched'),
+  "Vegas Golden Knights": require('./db/vegas-golden-knights/VGKsched'),
+  "Washington Capitals": require('./db/washington-capitals/WASsched'),
+  "Winnipeg Jets": require('./db/winnipeg-jets/WINsched')
+  }
 
 
 
