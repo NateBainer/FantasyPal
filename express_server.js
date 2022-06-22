@@ -29,18 +29,19 @@ const getUserByEmail = (email, database) => {
   return Object.values(database).find(user => user.email === email);
 };
 
-const addURL = (longURL, userID, db) => {
+const addSched = (longSched, userID, db) => {
   const dateCreation = new Date();
   const visitCount = 0;
   const visitHistory = [];
   const uVisitCount = 0;
   const visitorIDList = [];
-  const shortURL = generateRandomString();
-  db[shortURL] = { userID, longURL, dateCreation, visitCount, visitHistory, visitorIDList, uVisitCount };
-  return shortURL;
+  const shortSched = generateRandomString();
+  db[shortSched] = { userID, longSched, dateCreation, visitCount, visitHistory, visitorIDList, uVisitCount };
+  return shortSched;
 };
 
 const generateRandomString = () => {
+  console.log('yo')
   return Math.random().toString(36).substring(6);
 };
   
@@ -77,6 +78,59 @@ app.use(
 
 app.set("view engine", "ejs");
 
+const ANAsched = require('./db/anaheim-ducks/ANAsched')
+const ARIsched = require('./db/arizona-coyotes/ARIsched')
+const BOSsched = require('./db/boston-bruins/BOSsched')
+const BUFsched = require('./db/buffalo-sabres/BUFsched')
+const CALsched = require('./db/calgary-flames/CALsched')
+const CARsched = require('./db/carolina-hurricanes/CARsched')
+const CHIsched = require('./db/chicago-blackhawks/CHIsched')
+const COLsched = require('./db/colorado-avalanche/COLsched')
+const CBJsched = require('./db/columbus-blue-jackets/CBJsched')
+const DALsched = require('./db/dallas-stars/DALsched')
+const DETsched = require('./db/detroit-red-wings/DETsched')
+const EDMsched = require('./db/edmonton-oilers/EDMsched')
+const FLOsched = require('./db/florida-panthers/FLOsched')
+const LAKsched = require('./db/los-angeles-kings/LAKsched')
+const MINsched = require('./db/minnesota-wild/MINsched')
+const MTLsched = require('./db/montreal-canadiens/MTLsched')
+const NASsched = require('./db/nashville-predators/NASsched')
+const NJDsched = require('./db/new-jersey-devils/NJDsched')
+const NYIsched = require('./db/new-york-islanders/NYIsched')
+const NYRsched = require('./db/new-york-rangers/NYRsched')
+const OTTsched = require('./db/ottawa-senators/OTTsched')
+const PHIsched = require('./db/philadelphia-flyers/PHIsched')
+const PITsched = require('./db/pittsburgh-penguins/PITsched')
+const SJSsched = require('./db/san-jose-sharks/SJSsched')
+const SEAsched = require('./db/seattle-kraken/SEAsched')
+const STLsched = require('./db/st-louis-blues/STLsched')
+const TBLsched = require('./db/tampa-bay-lightning/TBLsched')
+const TMLsched = require('./db/toronto-maple-leafs/TMLsched')
+const VANsched = require('./db/vancouver-canucks/VANsched')
+const VGKsched = require('./db/vegas-golden-knights/VGKsched')
+const WASsched = require('./db/washington-capitals/WASsched')
+const WINsched = require('./db/winnipeg-jets/WINsched')
+
+
+
+
+const scheduleComparison = (arr1, arr2, date) => {
+  const sameDays = [];  // Array to contain match elements
+  for(var i=0 ; i<arr1.length ; ++i) {
+    for(var j=0 ; j<arr2.length ; ++j) {
+      if (date >= arr1[i]) { // only access numbers greater than current date (later days)
+        
+      } else {
+      if(arr1[i] == arr2[j]) {    // If element is in both the arrays
+        sameDays.push(arr1[i]);        // Push to arr array
+        }
+      }
+    }
+  }
+   
+  return sameDays.length;  // Return the number of elements in sameDays 
+}  
+
 // --------------------- ALL ROUTES --------------------------- //
 
 // homepage
@@ -88,7 +142,7 @@ app.get("/", (req, res) => {
   }
 });
 
-// URLS
+// SchedS
 app.get("/scheds", (req, res) => {
   let templateVars = {
     user: users[req.session.user_id],
@@ -108,13 +162,13 @@ app.post("/scheds", (req, res) => {
     res.status(401);
     res.render("scheds_error", templateVars);
   } else {
-    const longURL = req.body.longURL;
-    const shortURL = addURL(longURL, userID, schedDatabase);
-    res.redirect(`/scheds/${shortURL}`);
+    const longSched = req.body.longSched;
+    const shortSched = addSched(longSched, userID, schedDatabase);
+    res.redirect(`/scheds/${shortSched}`);
   }
 });
 
-// URLS/NEW
+// Sched/NEW
 app.get("/scheds/new", (req, res) => {
   let templateVars = { user: users[req.session.user_id] };
   if (templateVars.user) {
@@ -127,47 +181,47 @@ app.get("/scheds/new", (req, res) => {
 
 app.post("/scheds/new", (req, res) => {
   console.log(req.body);
-  const longURL = req.body.longURL;
+  const longSched = req.body.longSched;
   const userID = req.session.user_id;
-  const newURL = addURL(longURL, userID, schedDatabase);
-  res.redirect(`/scheds/${newURL}`);
+  const newSched = addSched(longSched, userID, schedDatabase);
+  res.redirect(`/scheds/${newSched}`);
 });
 
 
-// URLS/:SHORTURL
-app.get("/scheds/:shortURL", (req, res) => {
-  const shortURL = req.params.shortURL;
+// SchedS/:SHORTSched
+app.get("/scheds/:shortSched", (req, res) => {
+  const shortSched = req.params.shortSched;
   const userID = req.session.user_id;
-  if (!schedDatabase[shortURL]) {
+  if (!schedDatabase[shortSched]) {
     let templateVars = {
       status: 404,
-      message: 'TinyURL has not yet been born!!!',
+      message: 'TinySched has not yet been born!!!',
     };
     res.status(404);
     res.render("scheds_error", templateVars);
   } else {
-    const longURL = schedDatabase[shortURL].longURL;
-    let templateVars = {user: userID, scheds: schedsForUser(userID), longURL, shortURL};
+    const longSched = schedDatabase[shortSched].longSched;
+    let templateVars = {user: userID, scheds: schedsForUser(userID), longSched, shortSched};
     res.render("scheds_show", templateVars);
   }
 });
 
-app.post("/scheds/:shortURL", (req, res) => {
-  const shortURL = req.params.shortURL;
-  const longURL = req.body.longURL;
+app.post("/scheds/:shortSched", (req, res) => {
+  const shortSched = req.params.shortSched;
+  const longSched = req.body.longSched;
   const newDate = new Date();
-  if (req.session.user_id === schedDatabase[shortURL].userID) {
-    schedDatabase[shortURL].longURL = longURL;
-    schedDatabase[shortURL].visitCount = 0;
-    schedDatabase[shortURL].visitHistory = [];
-    schedDatabase[shortURL].uVisitCount = 0;
-    schedDatabase[shortURL].visitorIDList = [];
-    schedDatabase[shortURL].dateCreation = newDate;
-    res.redirect(`/scheds/${shortURL}`);
+  if (req.session.user_id === schedDatabase[shortSched].userID) {
+    schedDatabase[shortSched].longSched = longSched;
+    schedDatabase[shortSched].visitCount = 0;
+    schedDatabase[shortSched].visitHistory = [];
+    schedDatabase[shortSched].uVisitCount = 0;
+    schedDatabase[shortSched].visitorIDList = [];
+    schedDatabase[shortSched].dateCreation = newDate;
+    res.redirect(`/scheds/${shortSched}`);
   } else {
     let templateVars = {
       status: 401,
-      message: "Hey! You can't make changes to that TinyURL!!!",
+      message: "Hey! You can't make changes to that TinySched!!!",
       user: users[req.session.user_id]
     };
     res.status(401);
@@ -175,16 +229,16 @@ app.post("/scheds/:shortURL", (req, res) => {
   }
 });
 
-// URLS/:SHORTURL/DELETE
-app.post("/scheds/:shortURL/delete", (req,res) => {
-  const shortURL = req.params.shortURL;
-  if (req.session.user_id === schedDatabase[shortURL].userID) {
-    delete schedDatabase[req.params.shortURL];
+// SchedS/:SHORTSched/DELETE
+app.post("/scheds/:shortSched/delete", (req,res) => {
+  const shortSched = req.params.shortSched;
+  if (req.session.user_id === schedDatabase[shortSched].userID) {
+    delete schedDatabase[req.params.shortSched];
     res.redirect("/scheds");
   } else {
     let templateVars = {
       status: 401,
-      message: "Hey! You can't delete that TinyURL!!!",
+      message: "Hey! You can't delete that TinySched!!!",
       user: users[req.session.user_id]
     };
     res.status(401);
@@ -192,38 +246,38 @@ app.post("/scheds/:shortURL/delete", (req,res) => {
   }
 });
 
-// U/:SHORTURL
-app.get("/u/:shortURL", (req, res) => {
-  const shortURL = req.params.shortURL;
-  const longURL = schedDatabase[shortURL].longURL;
+// U/:SHORTSched
+app.get("/u/:shortSched", (req, res) => {
+  const shortSched = req.params.shortSched;
+  const longSched = schedDatabase[shortSched].longSched;
   const dateVisit = new Date();
-  if (!schedDatabase[shortURL]) {
+  if (!schedDatabase[shortSched]) {
     let templateVars = {
       status: 404,
-      message: "Hey! This TinyURL ain't been born yet!",
+      message: "Hey! This TinySched ain't been born yet!",
       user: users[req.session.user_id]
     };
     res.status(404);
     res.render("scheds_error", templateVars);
   } else if (!req.session.user_id) {
     req.session.user_id = generateRandomString();
-    schedDatabase[shortURL].visitHistory.push([dateVisit,req.session.user_id]);
-    schedDatabase[shortURL].visitCount++;
-    schedDatabase[shortURL].visitorIDList.push(req.session.user_id);
-    schedDatabase[shortURL].uVisitCount++;
+    schedDatabase[shortSched].visitHistory.push([dateVisit,req.session.user_id]);
+    schedDatabase[shortSched].visitCount++;
+    schedDatabase[shortSched].visitorIDList.push(req.session.user_id);
+    schedDatabase[shortSched].uVisitCount++;
   } else {
-    const visitorId = schedDatabase[shortURL].visitorIDList;
-    schedDatabase[shortURL].visitHistory.push([dateVisit,req.session.user_id]);
-    schedDatabase[shortURL].visitCount++;
+    const visitorId = schedDatabase[shortSched].visitorIDList;
+    schedDatabase[shortSched].visitHistory.push([dateVisit,req.session.user_id]);
+    schedDatabase[shortSched].visitCount++;
     if (!visitorId.includes(req.session.user_id)) {
       visitorId.push(req.session.user_id);
-      schedDatabase[shortURL].uVisitCount++;
+      schedDatabase[shortSched].uVisitCount++;
     }
   }
-  if (longURL.startsWith("http://")) {
-    res.redirect(longURL);
+  if (longSched.startsWith("http://")) {
+    res.redirect(longSched);
   } else {
-    res.redirect(`http://${longURL}`);
+    res.redirect(`http://${longSched}`);
   }
 });
 
