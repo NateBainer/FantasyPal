@@ -28,12 +28,12 @@ const getUserByEmail = (email, database) => {
   return Object.values(database).find(user => user.email === email);
 };
 
-const addSched = (teamOne, teamTwo, numOfGames, user_id) => {
+const addSched = (teamOne, teamTwo, numOfGames, dateSearched, user_id) => {
   if (user_id in schedDatabase) {
-    schedDatabase[user_id].push({ teamOne, teamTwo, numOfGames, userID: user_id });
+    schedDatabase[user_id].push({ teamOne, teamTwo, numOfGames, dateSearched, userID: user_id });
 
   } else {
-    schedDatabase[user_id] = [{ teamOne, teamTwo, numOfGames, userID: user_id}];
+    schedDatabase[user_id] = [{ teamOne, teamTwo, numOfGames, dateSearched, userID: user_id}];
   }
   // return schedDatabase[shortSched];
 };
@@ -217,11 +217,12 @@ app.get("/scheds/new", (req, res) => {
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!
 app.post("/scheds/new", (req, res) => {
   console.log(req.body, 'hello there');
-  const teamOneSched = scheduleLookup[req.body["team-one"]]
-  const teamTwoSched = scheduleLookup[req.body["team-two"]]
-  const numOfGames = scheduleComparison(teamOneSched, teamTwoSched, req.body.date)
-  addSched(req.body["team-one"], req.body["team-two"], numOfGames, req.session.user_id)
-  res.render("scheds_show", {teamOne: req.body["team-one"], teamTwo: req.body["team-two"], numOfGames, user: users[req.session.user_id]})
+  const teamOneSched = scheduleLookup[req.body["team-one"]];
+  const teamTwoSched = scheduleLookup[req.body["team-two"]];
+  const numOfGames = scheduleComparison(teamOneSched, teamTwoSched, req.body.date);
+  const dateSearched = req.body["Date"];
+  addSched(req.body["team-one"], req.body["team-two"], numOfGames, dateSearched, req.session.user_id);
+  res.render("scheds_show", {teamOne: req.body["team-one"], teamTwo: req.body["team-two"], numOfGames, dateSearched, user: users[req.session.user_id]});
 });
 
 
@@ -245,22 +246,10 @@ app.get("/scheds/:shortSched", (req, res) => {
 
 
 
-// SchedS/:SHORTSched/DELETE
-app.post("/scheds/:shortSched/delete", (req,res) => {
-  const shortSched = req.params.shortSched;
-  if (req.session.user_id === schedDatabase[shortSched].userID) {
-    delete schedDatabase[req.params.shortSched];
-    res.redirect("/scheds");
-  } else {
-    let templateVars = {
-      status: 401,
-      message: "Hey! You can't delete that TinySched!!!",
-      user: users[req.session.user_id]
-    };
-    res.status(401);
-    res.render("scheds_error", templateVars);
-  }
-});
+// SchedsDELETE
+app.post("/scheds", (req, res) => {
+
+})
 
 
 
