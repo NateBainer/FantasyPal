@@ -24,30 +24,30 @@
               <th style="color: white; text-shadow: 2px 2px 1px black;; font-size: 30px;" scope="col">Team 1</th>
               <th style="color: white; text-shadow: 2px 2px 1px black;; font-size: 30px;" scope="col">Team 2</th>
               <th style="color: white; text-shadow: 2px 2px 1px black; font-size: 30px;" scope="col">Date-Searched</th>
-              <th style="color: white; text-shadow: 2px 2px 1px black; font-size: 30px;" scope="col">Coinciding Days
-                Played</th>
-              <th style="color: white; text-shadow: 2px 2px 1px black; font-size: 30px;" scope="col">Delete</th>
+              <th style="color: white; text-shadow: 2px 2px 1px black; font-size: 30px;" scope="col">Coinciding Days to Play</th>
+              <!-- <th style="color: white; text-shadow: 2px 2px 1px black; font-size: 30px;" scope="col">Delete</th> -->
 
 
             </tr>
           </thead>
           <tbody>
-            <% for(let sched in scheds) { %>
+            <% for(let sched of scheds) { %>
               <tr>
                 <td>
-                  <%=teamOne %>
+
+                  <%=sched.teamOne %>
                 </td>
                 <td>
-                  <%= teamTwo %>
+                  <%= sched.teamTwo %>
                 </td>
                 <td>
-                  <%= dateSearched %>
+                  <%= sched.dateSearched %>
                 </td>
                 <td>
-                  <%= numOfGames %>
+                  <%= sched.numOfGames %>
                 </td>
                 <td>
-                  <form method="POST" action="/scheds/<%= sched %>/delete">
+                  <form method="POST" action="/scheds/<%= sched.id %>/delete">
                     <button type="submit" style="border-color: red; background-color: white; color: red;"
                       class="btn btn-primary">Delete</button>
                   </form>

@@ -11,6 +11,21 @@ const schedDatabase = {
 
 };
 
+const userScheds = function(ID, schedDatabase) {
+  let result = {};
+  for (const sched in schedDatabase) {
+    if (ID === schedDatabase[sched].ID) {
+      result[sched] = schedDatabase[sched];
+    }
+  }
+  return result;
+};
+
+// const templateVars = {
+//  scheds: userScheds(id, schedDatabase),
+//   user: user
+// };
+
 const users = {
   "userRandomID": {
     id: "userRandomID",
@@ -28,18 +43,17 @@ const getUserByEmail = (email, database) => {
   return Object.values(database).find(user => user.email === email);
 };
 
-const addSched = (teamOne, teamTwo, numOfGames, dateSearched, user_id) => {
+const addSched = (id, teamOne, teamTwo, numOfGames, dateSearched, user_id) => {
   if (user_id in schedDatabase) {
-    schedDatabase[user_id].push({ teamOne, teamTwo, numOfGames, dateSearched, userID: user_id });
+    schedDatabase[user_id].push({ id, teamOne, teamTwo, numOfGames, dateSearched, userID: user_id });
 
   } else {
-    schedDatabase[user_id] = [{ teamOne, teamTwo, numOfGames, dateSearched, userID: user_id }];
+    schedDatabase[user_id] = [{ id, teamOne, teamTwo, numOfGames, dateSearched, userID: user_id }];
   }
   // return schedDatabase[shortSched];
 };
 
 const generateRandomString = () => {
-  console.log('yo')
   return Math.random().toString(36).substring(6);
 };
 
@@ -178,31 +192,32 @@ app.get("/", (req, res) => {
 
 // Scheds
 app.get("/scheds", (req, res) => {
-  console.log("Matchup", schedDatabase[req.session.user_id])
-  console.log(schedDatabase)
   let templateVars = {
     user: users[req.session.user_id],
-    scheds: schedsForUser(req.session.user_id, schedDatabase)
+    // scheds: schedsForUser(req.session.user_id, schedDatabase)
+    scheds: schedDatabase[req.session.user_id] || []
   };
+  console.log("hey guyrrrrrl", templateVars)
   res.render("scheds_index", templateVars);
 });
 
 
-app.post("/scheds", (req, res) => {
-  const userID = req.session.user_id;
-  if (!userID) {
-    let templateVars = {
-      status: 401,
-      message: 'Hey, Fool! You need to login first!',
-    };
-    res.status(401);
-    res.render("scheds_error", templateVars);
-  } else {
-    const longSched = req.body.longSched;
-    const shortSched = addSched(longSched, userID, schedDatabase);
-    res.redirect(`/scheds/${shortSched}`);
-  }
-});
+// app.post("/scheds", (req, res) => {
+//   const userID = req.session.user_id;
+//   if (!userID) {
+//     let templateVars = {
+//       status: 401,
+//       message: 'Hey, Fool! You need to login first!',
+//     };
+//     res.status(401);
+//     res.render("scheds_error", templateVars);
+//   } else {
+//     const longSched = req.body.longSched;
+//     const shortSched = addSched(longSched, userID, schedDatabase);
+//     res.redirect(`/scheds/${shortSched}`);
+//   }
+// });
+//////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Sched/NEW
 app.get("/scheds/new", (req, res) => {
@@ -215,44 +230,51 @@ app.get("/scheds/new", (req, res) => {
 });
 
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 app.post("/scheds/new", (req, res) => {
-  console.log(req.body, 'hello there');
+  // console.log(req.body, 'hello there');
   const teamOneSched = scheduleLookup[req.body["team-one"]];
   const teamTwoSched = scheduleLookup[req.body["team-two"]];
   const numOfGames = scheduleComparison(teamOneSched, teamTwoSched, req.body.date);
   const dateSearched = req.body["date"];
-  addSched(req.body["team-one"], req.body["team-two"], numOfGames, dateSearched, req.session.user_id);
-  console.log("test", req.body);
-  res.render("scheds_show", { teamOne: req.body["team-one"], teamTwo: req.body["team-two"], numOfGames, dateSearched, user: users[req.session.user_id] });
+  const id = generateRandomString();
+
+  addSched(id, req.body["team-one"], req.body["team-two"], numOfGames, dateSearched, req.session.user_id);
+  // console.log("test", schedDatabase);
+  res.render("scheds_show", { id, teamOne: req.body["team-one"], teamTwo: req.body["team-two"], numOfGames, dateSearched, user: users[req.session.user_id] });
 });
+
 
 
 // Scheds/:SHORTSched
-app.get("/scheds/:shortSched", (req, res) => {
-  const shortSched = req.params.shortSched;
-  const userID = req.session.user_id;
-  if (!schedDatabase[shortSched]) {
-    let templateVars = {
-      status: 404,
-      message: 'TinySched has not yet been born!!!',
-    };
-    res.status(404);
-    res.render("scheds_error", templateVars);
-  } else {
-    const longSched = schedDatabase[shortSched].longSched;
-    let templateVars = { user: userID, scheds: schedsForUser(userID), longSched, shortSched };
-    res.render("scheds_show", templateVars);
+// app.get("/scheds/:shortSched", (req, res) => {
+//   const shortSched = req.params.shortSched;
+//   const userID = req.session.user_id;
+//   if (!schedDatabase[shortSched]) {
+//     let templateVars = {
+//       status: 404,
+//       message: 'TinySched has not yet been born!!!',
+//     };
+//     res.status(404);
+//     res.render("scheds_error", templateVars);
+//   } else {
+//     const longSched = schedDatabase[shortSched].longSched;
+//     let templateVars = { user: userID, scheds: schedsForUser(userID), longSched, shortSched };
+//     res.render("scheds_show", templateVars);
+//   }
+// });
+
+
+
+// SCHEDS//DELETE//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+app.post("/scheds/:id/delete", (req,res) => {
+  const id = req.params.id;
+  schedDatabase[req.session.user_id] = schedDatabase[req.session.user_id].filter(sched => sched.id !== id)
+    res.redirect("/scheds")
   }
-});
+);
 
-
-
-// SchedsDELETE
-app.post("/scheds", (req, res) => {
-
-})
-
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // LOGIN
 app.get("/login", (req, res) => {
