@@ -21,10 +21,13 @@
         <table class="table">
           <thead>
             <tr>
-              <th style="color: white; text-shadow: 2px 2px 0px black;; font-size: 30px;" scope="col">Teams</th>
-              <th style="color: white; text-shadow: 2px 2px 0px black; font-size: 30px;" scope="col">Date-Searched</th>
-              <th style="color: white; text-shadow: 2px 2px 0px black; font-size: 30px;" scope="col">Coinciding Days
+              <th style="color: white; text-shadow: 2px 2px 1px black;; font-size: 30px;" scope="col">Team 1</th>
+              <th style="color: white; text-shadow: 2px 2px 1px black;; font-size: 30px;" scope="col">Team 2</th>
+              <th style="color: white; text-shadow: 2px 2px 1px black; font-size: 30px;" scope="col">Date-Searched</th>
+              <th style="color: white; text-shadow: 2px 2px 1px black; font-size: 30px;" scope="col">Coinciding Days
                 Played</th>
+              <th style="color: white; text-shadow: 2px 2px 1px black; font-size: 30px;" scope="col">Delete</th>
+
 
             </tr>
           </thead>
@@ -32,21 +35,21 @@
             <% for(let sched in scheds) { %>
               <tr>
                 <td>
-                  <%= sched %>
+                  <%=teamOne %>
                 </td>
                 <td>
-                  <%= scheds[sched].longsched %>
+                  <%= teamTwo %>
+                </td>
+                <td>
+                  <%= dateSearched %>
+                </td>
+                <td>
+                  <%= numOfGames %>
                 </td>
                 <td>
                   <form method="POST" action="/scheds/<%= sched %>/delete">
                     <button type="submit" style="border-color: red; background-color: white; color: red;"
                       class="btn btn-primary">Delete</button>
-                  </form>
-                </td>
-                <td>
-                  <form method="GET" action="/scheds/<%= sched %>">
-                    <button type="submit" style="border-color: blue; background-color: white; color: blue;"
-                      class="btn btn-primary">Edit</button>
                   </form>
                 </td>
               </tr>
