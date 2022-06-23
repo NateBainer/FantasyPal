@@ -12,21 +12,38 @@
 <body>
 
   <%- include ('partials/_header') %>
+    <main style="margin: 1em;">
+      <h3 style="color: white; text-shadow: 2px 2px 1.5px black;; font-size: 40px; justify-content: center;">New Matchup
+      </h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th style="color: white; text-shadow: 2px 2px 1px black;; font-size: 30px;" scope="col">Team 1</th>
+            <th style="color: white; text-shadow: 2px 2px 1px black;; font-size: 30px;" scope="col">Team 2</th>
+            <th style="color: white; text-shadow: 2px 2px 1px black; font-size: 30px;" scope="col">Date-Searched</th>
+            <th style="color: white; text-shadow: 2px 2px 1px black; font-size: 30px;" scope="col">Coinciding Days
+              Played</th>
+          </tr>
+        </thead>
+        <tbody>
 
-    <div>
-      <p>
-        teamOne: <%= teamOne %>
-      </p>
-      <p>
-        teamTwo: <%= teamTwo %>
-      </p>
-      <p>
-        date: <%= dateSearched %>
-      </p>
-      <p>
-        numOfGames: <%= numOfGames %>
-      </p>
-    </div>
+          <tr>
+            <td>
+              <%=teamOne %>
+            </td>
+            <td>
+              <%= teamTwo %>
+            </td>
+            <td>
+              <%= dateSearched %>
+            </td>
+            <td>
+              <%= numOfGames %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
     <!-- Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
       integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
